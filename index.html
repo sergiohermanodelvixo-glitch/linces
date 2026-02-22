@@ -6,45 +6,96 @@
 <title>Club Linces Balonmano Temuco</title>
 
 <style>
-
-body{
-    font-family: Arial, sans-serif;
-    margin:0;
-    padding:0;
-    background:#f4f4f4;
-    color:#333;
+    .equipo h2{
+  text-align: center;
+  color: #b71c1c;
 }
+.equipo{
+  padding: 20px 0;
+  background: #f4f4f4; /* mismo fondo */
+}
+
+.equipo-box{
+  max-width: 1200px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0,0,0,0.1);
+  padding: 20px;
+}
+
+.cards{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  justify-content: center;
+}
+
+.card{
+  width: 200px;
+  text-align: center;
+  border: 1px solid #eee;
+  border-radius: 10px;
+  padding: 12px;
+  background: #fff;
+}
+
+.card img{
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 3px solid #b71c1c;
+}
+
+.card h3{
+  margin: 10px 0 4px;
+}
+body{
+  font-family: Arial, sans-serif;
+  margin: 0;
+  background: #f4f4f4;
+  color:#333;
+}
+
 
 header{
-    background:red;
-    color:white;
-    text-align:center;
-    padding:20px;
-    position:relative;
+  background: #b71c1c;
+  color: white;
+  text-align: center;
+  padding: 26px 16px 18px;
+  position: relative;
 }
 
+header p{
+  max-width: 900px;
+  margin: 10px auto 0;
+  opacity: 0.95;
+  line-height: 1.5;
+}
 .logo{
-    position:absolute;
-    top:10px;
-    left:15px;
-    width:60px;
+  position: absolute;
+  top: 14px;
+  left: 18px;
+  width: 64px;
+  height: 64px;
+  object-fit: contain;
+  background: white;
+  border-radius: 14px;
+  padding: 6px;
 }
 
-.menu{
-    display:flex;
-    justify-content:center;
-    gap:20px;
-    background:#b71c1c;
-    padding:15px;
+.menu {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+    background-color: transparent;
 }
 
-.categoria-btn{
-    background:white;
-    border:none;
-    padding:10px 20px;
-    cursor:pointer;
-    font-weight:bold;
-    border-radius:5px;
+.categoria-btn {
+    background-color: #b71c1c;
+    color: white;
 }
 
 .categoria-btn:hover{
@@ -52,12 +103,12 @@ header{
 }
 
 .container{
-    max-width:1200px;
-    margin:20px auto;
-    padding:20px;
-    background:white;
-    border-radius:8px;
-    box-shadow:0 0 10px rgba(0,0,0,0.1);
+  max-width: 1100px;
+  margin: 20px auto;
+  padding: 24px;
+  background: #fff;
+  border-radius: 14px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.08);
 }
 
 .court{
@@ -120,6 +171,89 @@ ul{
 li{
     padding:5px 0;
 }
+/* --- RESPONSIVE: que no se rompa en celular --- */
+* { box-sizing: border-box; }
+
+.menu{
+  display:flex;
+  justify-content:center;
+  flex-wrap: wrap;   /* CLAVE */
+  gap:10px;
+  padding:12px;
+  margin: 0 auto 16px;
+  border-radius:12px;
+  background:#f7f7f7;
+}
+
+.categoria-btn{
+  min-width: 130px;
+  border-radius:10px;
+}
+
+@media (max-width: 520px){
+  .categoria-btn{
+    min-width: 46%;  /* 2 botones por fila */
+  }
+}
+
+/* Cancha responsive (mantiene proporción) */
+.court{
+  width: min(100%, 650px);
+  aspect-ratio: 650 / 420; /* evita que se deforme */
+  height: auto;            /* ya no dependes de height fijo */
+}
+
+/* --- CONTACTO --- */
+.contacto{
+  margin-top: 18px;
+  padding: 16px;
+  border-radius: 12px;
+  background: white;
+  border: 1px solid #eee;
+}
+
+.contacto-grid{
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  gap: 12px;
+}
+
+@media (max-width: 700px){
+  .contacto-grid{ grid-template-columns: 1fr; }
+}
+
+.botones-contacto{
+  display:grid;
+  gap:10px;
+}
+
+.btn{
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #ddd;
+  text-decoration:none;
+  font-weight: bold;
+}
+
+.btn-wsp{
+  background: #25D366;
+  color: white;
+  border-color: #25D366;
+}
+
+.btn-ig{
+  background: #E1306C;
+  color: white;
+  border-color: #E1306C;
+}
+
+.btn-mail{
+  background: white;
+  color: #333;
+}
 
 </style>
 </head>
@@ -133,18 +267,75 @@ li{
      de la araucania de chile. Fundado en el año 2024, nuestro club se dedica
       a promover el deporte, formar atletas fomentar el compañerismo, y 
       la disciplina.</p>
+</header>
+<section class="equipo">
+  <div class="equipo-box">
 
+    <!-- FUNDADORES -->
+    <h2>Fundadores</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="jorge.png" >
+        <h3>jorge mellado</h3>
+        <p>Fundador</p>
+      </div>
+
+      <div class="card">
+        <img src="marcia.png">
+        <h3>marcia villarroel</h3>
+        <p>Fundador</p>
+      </div>
+    </div>
+
+    <!-- DIRECTIVA -->
+    <h2 style="margin-top: 30px;">Directiva</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="sergio.png">
+        <h3>Presidente</h3>
+        <p>sergio baeza</p>
+      </div>
+
+      <div class="card">
+        <img src="jaqueline.png">
+        <h3>Secretario</h3>
+        <p>jaqueline</p>
+      </div>
+
+      <div class="card">
+        <img src="valeria.png">
+        <h3>Tesorero</h3>
+        <p>valeria pacheco</p>
+      </div>
+    </div>
+
+    <!-- ENTRENADORES -->
+    <h2 style="margin-top: 30px;">Entrenadores</h2>
+    <div class="cards">
+      <div class="card">
+        <img src="jorge.png">
+        <h3>Entrenador varones</h3>
+        <p>jorge mellado</p>
+      </div>
+
+      <div class="card">
+        <img src="marcia.png">
+        <h3>Entrenadora damas</h3>
+        <p>marcia villarroel</p>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ================= JUVENILES ================= -->
+<div class="container categoria" id="juveniles">
+    
 <nav class="menu">
 <button class="categoria-btn" data-cat="juveniles">Juveniles</button>
 <button class="categoria-btn" data-cat="cadetes">Cadetes</button>
 <button class="categoria-btn" data-cat="infantiles">Infantiles</button>
 <button class="categoria-btn" data-cat="mini">Mini</button>
 </nav>
-</header>
-
-
-<!-- ================= JUVENILES ================= -->
-<div class="container categoria" id="juveniles">
 
 <h2>Juveniles</h2>
 
@@ -309,13 +500,13 @@ li{
 <div id="lateral-der-inf-list" class="players-list">
     <h3>lateral derecho</h3>
     <ul>
-        <li>deigo</li>
+        <li>daniel</li>
     </ul>
 </div>
 <div id="centro-inf-list" class="players-list">
     <h3>Centro</h3>
     <ul>
-        <li>ivan mellado </li>
+        <li>ivan mellado</li>
     </ul>
 </div>
 <div id="extremo-izq-inf-list" class="players-list">
@@ -397,6 +588,37 @@ li{
     </ul>
 </div>
 </div>
+<section class="contacto" id="contacto">
+  <h2>Contacto</h2>
+
+  <div class="contacto-grid">
+    <p>
+      ¿Quieres unirte al club o pedir info?<br>
+      Escríbenos por WhatsApp o síguenos en Instagram.
+    </p>
+
+    <div class="botones-contacto">
+      <!-- WhatsApp: cambia el número -->
+      <a class="btn btn-wsp"
+         href="https://wa.me/56935408831?text=Hola%20Club%20Linces%20👋%20Quiero%20información"
+         target="_blank" rel="noopener">
+        WhatsApp
+      </a>
+
+      <!-- Instagram: cambia el usuario -->
+      <a class="btn btn-ig"
+         href="https://instagram.com/club.linces.balonmano.temuco"
+         target="_blank" rel="noopener">
+        Instagram
+      </a>
+
+      <!-- Email opcional -->
+      <a class="btn btn-mail" href="const.segiobaeza@gmail.com">
+        Email
+      </a>
+    </div>
+  </div>
+</section>
 
 
 <script>
@@ -427,5 +649,3 @@ document.getElementById(btn.getAttribute('data-cat')).style.display='block';
 
 </body>
 </html>
-
-
