@@ -1,192 +1,429 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Club Linces Balonmano Temuco</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f4f4f4;
-            color: #333;
-        }
-        header {
-            background-color: #007bff;
-            color: white;
-            text-align: center;
-            padding: 20px;
-        }
-        .container {
-            max-width: 1200px;
-            margin: 20px auto;
-            padding: 20px;
-            background-color: white;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
-        }
-        .court {
-            position: relative;
-            width: 100%;
-            max-width: 600px;
-            height: 400px;
-            margin: 20px auto;
-            background-image: url("cancha.de.handball.png");
-            background-size: cover;
-            background-position: center;
-            background-repeat: no-repeat;
-            border-radius: 10px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Club Linces Balonmano Temuco</title>
 
-        .position {
-            position: absolute;
-            width: 60px;
-            height: 60px;
-            background-color: #ff9800;
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 12px;
-            font-weight: bold;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .position:hover {
-            background-color: #e65100;
-        }
-        .portero { top: 70%; left: 50%; transform: translateX(-50%); }
-        .lateral-izq { top: 30%; left: 20%; }
-        .lateral-der { top: 30%; right: 20%; }
-        .centro { top: 20%; left: 50%; transform: translateX(-50%); }
-        .extremo-izq { top: 50%; left: 10%; }
-        .extremo-der { top: 50%; right: 10%; }
-        .pivote { top: 50%; left: 50%; transform: translate(-50%, -50%); }
-        .players-list {
-            display: none;
-            margin-top: 20px;
-            padding: 10px;
-            background-color: #f9f9f9;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-        }
-        .players-list.show {
-            display: block;
-        }
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-        li {
-            padding: 5px 0;
-        }
-        header {
-    background-color: red;
-    color: white;
-    text-align: center;
-    padding: 20px;
-    position: relative; /* IMPORTANTE */
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    margin:0;
+    padding:0;
+    background:#f4f4f4;
+    color:#333;
 }
 
-.logo {
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    width: 60px; /* puedes cambiar tamaño */
-}  
-    </style>
+header{
+    background:red;
+    color:white;
+    text-align:center;
+    padding:20px;
+    position:relative;
+}
+
+.logo{
+    position:absolute;
+    top:10px;
+    left:15px;
+    width:60px;
+}
+
+.menu{
+    display:flex;
+    justify-content:center;
+    gap:20px;
+    background:#b71c1c;
+    padding:15px;
+}
+
+.categoria-btn{
+    background:white;
+    border:none;
+    padding:10px 20px;
+    cursor:pointer;
+    font-weight:bold;
+    border-radius:5px;
+}
+
+.categoria-btn:hover{
+    background:#ddd;
+}
+
+.container{
+    max-width:1200px;
+    margin:20px auto;
+    padding:20px;
+    background:white;
+    border-radius:8px;
+    box-shadow:0 0 10px rgba(0,0,0,0.1);
+}
+
+.court{
+    position:relative;
+    width:100%;
+    max-width:600px;
+    height:400px;
+    margin:20px auto;
+    background-image:url("cancha.de.handball.png");
+    background-size:cover;
+    background-position:center;
+    border-radius:10px;
+}
+
+.position{
+    position:absolute;
+    width:60px;
+    height:60px;
+    background:#ff9800;
+    color:white;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    font-size:12px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.position:hover{
+    background:#e65100;
+}
+
+.portero{ top:70%; left:50%; transform:translateX(-50%);}
+.lateral-izq{ top:30%; left:20%;}
+.lateral-der{ top:30%; right:20%;}
+.centro{ top:20%; left:50%; transform:translateX(-50%);}
+.extremo-izq{ top:50%; left:10%;}
+.extremo-der{ top:50%; right:10%;}
+.pivote{ top:50%; left:50%; transform:translate(-50%,-50%);}
+
+.players-list{
+    display:none;
+    margin-top:20px;
+    padding:10px;
+    background:#f9f9f9;
+    border:1px solid #ddd;
+    border-radius:5px;
+}
+
+.players-list.show{
+    display:block;
+}
+
+ul{
+    list-style:none;
+    padding:0;
+}
+
+li{
+    padding:5px 0;
+}
+
+</style>
 </head>
+
 <body>
-    <header>
-        <img src="logo.linces.png" class="logo">
-        <h1>Club Linces Balonmano Temuco</h1>
-        <p>Bienvenidos al Club Linces Balonmano Temuco,
-             somos un equipo de la region de la araucania
-              de chile. Fundado en el año 2024, nuestro
-              club se dedica a promover el deporte, formar
-               atletas fomentar el compañerismo, y la disciplina.</p>
-    </header>
-    <div class="container">
-        <h2>Cancha de Balonmano - Posiciones</h2>
-        <p>Haz clic en una posición para ver la lista de jugadores actuales.</p>
-        <div class="court">
-            <div class="position portero" data-position="portero">Portero</div>
-            <div class="position lateral-izq" data-position="lateral-izq">Lateral Izq</div>
-            <div class="position lateral-der" data-position="lateral-der">Lateral Der</div>
-            <div class="position centro" data-position="centro">Centro</div>
-            <div class="position extremo-izq" data-position="extremo-izq">Extremo Izq</div>
-            <div class="position extremo-der" data-position="extremo-der">Extremo Der</div>
-            <div class="position pivote" data-position="pivote">Pivote</div>
-        </div>
-        <div id="portero-list" class="players-list">
-            <h3>Jugadores - Portero</h3>
-            <ul>
-                <li>ignacio concha</li>
-            </ul>
-        </div>
-        <div id="lateral-izq-list" class="players-list">
-            <h3>Jugadores - Lateral Izquierdo</h3>
-            <ul>
-                <li>agustin concha</li>
-                <li>benjamin</li>
-            </ul>
-        </div>
-        <div id="lateral-der-list" class="players-list">
-            <h3>Jugadores - Lateral Derecho</h3>
-            <ul>
-                <li>vicente millaman</li>
-                <li>lucas trillat</li>
-            </ul>
-        </div>
-         <div id="pivote-list" class="players-list">
-            <h3>Jugadores - Pivote</h3>
-            <ul>
-                <li>johann neculan</li>
-                <li>vicente baeza</li>
-            </ul>
-        </div>
-        <div id="extremo-izq-list" class="players-list">
-            <h3>Jugadores - Extremo Izquierdo</h3>
-            <ul>
-                <li>ivan mellado</li>
-                <li>martin alosno</li>
-            </ul>
-        </div>
-        <div id="extremo-der-list" class="players-list">
-            <h3>Jugadores - Extremo Derecho</h3>
-            <ul>
-                <li>vicente baeza</li>
-                <li>benjamin </li>
-            </ul>
-        </div>
-            <div id="centro-list" class="players-list">
-            <h3>Jugadores - Centro</h3>
-            <ul>
-                <li>vicente baeza</li>
-                <li>martin vallejos</li>
-            </ul>
-        </div>
-        </div>
+
+<header>
+<img src="logo.linces.png" class="logo">
+<h1>Club Linces Balonmano Temuco</h1>
+<p>Bienvenidos al Club Linces Balonmano Temuco, somos un equipo de la region
+     de la araucania de chile. Fundado en el año 2024, nuestro club se dedica
+      a promover el deporte, formar atletas fomentar el compañerismo, y 
+      la disciplina.</p>
+
+<nav class="menu">
+<button class="categoria-btn" data-cat="juveniles">Juveniles</button>
+<button class="categoria-btn" data-cat="cadetes">Cadetes</button>
+<button class="categoria-btn" data-cat="infantiles">Infantiles</button>
+<button class="categoria-btn" data-cat="mini">Mini</button>
+</nav>
+</header>
+
+
+<!-- ================= JUVENILES ================= -->
+<div class="container categoria" id="juveniles">
+
+<h2>Juveniles</h2>
+
+<div class="court">
+<div class="position portero" data-position="portero">Portero</div>
+<div class="position lateral-izq" data-position="lateral-izq">Lateral Izq</div>
+<div class="position lateral-der" data-position="lateral-der">Lateral Der</div>
+<div class="position centro" data-position="centro">Centro</div>
+<div class="position extremo-izq" data-position="extremo-izq">Extremo Izq</div>
+<div class="position extremo-der" data-position="extremo-der">Extremo Der</div>
+<div class="position pivote" data-position="pivote">Pivote</div>
+</div>
+
+<div id="portero-list" class="players-list">
+<h3>Portero</h3>
+<ul>
+<li>ignacio</li>
+</ul>
+</div>
+
+<div id="lateral-izq-list" class="players-list">
+<h3>Lateral Izquierdo</h3>
+<ul>
+<li>benjamin</li>
+<li>lucas trillat</li>
+</ul>
+</div>
+
+<div id="lateral-der-list" class="players-list">
+<h3>Lateral Derecho</h3>
+<ul>
+<li>vicente millaman</li>
+<li>agustin concha</li>
+</ul>
+</div>
+
+<div id="centro-list" class="players-list">
+<h3>Centro</h3>
+<ul>
+<li>vicente millaman</li>
+<li>martin vallejos</li>
+</ul>
+</div>
+
+<div id="extremo-izq-list" class="players-list">
+<h3>Extremo Izquierdo</h3>
+<ul>
+<li>vicente baeza</li>
+</ul>
+</div>
+
+<div id="extremo-der-list" class="players-list">
+<h3>Extremo Derecho</h3>
+<ul>
+<li>ivan mellado</li>
+<li>martin alonso</li>
+</ul>
+</div>
+
+<div id="pivote-list" class="players-list">
+<h3>Pivote</h3>
+<ul>
+<li>johann neculan</li>
+<li>vicente baeza</li>
+</ul>
+</div>
+
+</div>
+
+
+<!-- ================= CADETES ================= -->
+<div class="container categoria" id="cadetes" style="display:none;">
+
+<h2>Cadetes</h2>
+
+<div class="court">
+<div class="position portero" data-position="portero-cad">Portero</div>
+<div class="position lateral-izq" data-position="lateral-izq-cad">Lateral Izq</div>
+<div class="position lateral-der" data-position="lateral-der-cad">Lateral Der</div>
+<div class="position centro" data-position="centro-cad">Centro</div>
+<div class="position extremo-izq" data-position="extremo-izq-cad">Extremo Izq</div>
+<div class="position extremo-der" data-position="extremo-der-cad">Extremo Der</div>
+<div class="position pivote" data-position="pivote-cad">Pivote</div>
+</div>
+
+<div id="portero-cad-list" class="players-list">
+    <h3>Portero</h3>
+    <ul>
+    <li>belen</li>
+    <li>emilio</li>
+    <li>constanza (del pelo teñido)</li>
+    </ul>
+</div>
+<div id="lateral-izq-cad-list" class="players-list">
+    <h3>Lateral Izquierdo</h3>
+    <ul>
+    <li>francisca gallardo</li>
+    </ul>
+</div>
+<div id="lateral-der-cad-list" class="players-list">
+    <h3>Lateral Derecho</h3>
+    <ul>
+    <li>constanza herrera</li>
+    <li>elena </li>
+    </ul>
     </div>
-    <script>
-        const positions = document.querySelectorAll('.position');
-        const lists = document.querySelectorAll('.players-list');
+<div id="centro-cad-list" class="players-list">
+    <h3>Centro</h3>
+    <ul>
+        <li>martina avila</li>
+    </ul>
+</div>
+<div id="extremo-izq-cad-list" class="players-list">
+    <h3>Extremo Izquierdo</h3>
+    <ul>
+        <li>blanca caravajal</li>
+        <li>amanda</li>
+    </ul>
+</div>
+<div id="extremo-der-cad-list" class="players-list">
+    <h3>Extremo Derecho</h3>
+    <ul>
+        <li>maria paz</li>
+    </ul
+    ></div>
+<div id="pivote-cad-list" class="players-list">
+    <h3>Pivote</h3>
+    <ul>
+        <li>angelica</li>
+    </ul>
+</div>
 
-        positions.forEach(pos => {
-            pos.addEventListener('click', () => {
-                // Ocultar todas las listas
-                lists.forEach(list => list.classList.remove('show'));
-                // Mostrar la lista correspondiente
-                const position = pos.getAttribute('data-position');
-                const list = document.getElementById(position + '-list');
-                if (list) {
-                    list.classList.add('show');
-                }
-            });
-        });
-    </script>
+</div>
+
+
+<!-- ================= INFANTILES ================= -->
+<div class="container categoria" id="infantiles" style="display:none;">
+<h2>Infantiles</h2>
+
+<div class="court">
+<div class="position portero" data-position="portero-inf">Portero</div>
+<div class="position lateral-izq" data-position="lateral-izq-inf">Lateral Izq</div>
+<div class="position lateral-der" data-position="lateral-der-inf">Lateral Der</div>
+<div class="position centro" data-position="centro-inf">Centro</div>
+<div class="position extremo-izq" data-position="extremo-izq-inf">Extremo Izq</div>
+<div class="position extremo-der" data-position="extremo-der-inf">Extremo Der</div>
+<div class="position pivote" data-position="pivote-inf">Pivote</div>
+</div>
+
+<div id="portero-inf-list" class="players-list">
+    <h3>Portero</h3>
+    <ul>
+        <li>Jugador 1</li>
+    </ul>
+</div>
+<div id="lateral-izq-inf-list" class="players-list">
+    <h3>Lateral Izquierdo</h3>
+    <ul>
+        <li>daniel</li>
+    </ul>
+</div>
+<div id="lateral-der-inf-list" class="players-list">
+    <h3>diego</h3>
+    <ul>
+        <li>Jugador 3</li>
+    </ul>
+</div>
+<div id="centro-inf-list" class="players-list">
+    <h3>Centro</h3>
+    <ul>
+        <li>ivan melladoJugador 4</li>
+    </ul>
+</div>
+<div id="extremo-izq-inf-list" class="players-list">
+    <h3>Extremo Izquierdo</h3>
+    <ul>
+        <li>blanca</li>
+    </ul>
+</div>
+<div id="extremo-der-inf-list" class="players-list">
+    <h3>Extremo Derecho</h3>
+    <ul><li>elena</li>
+    </ul>
+</div>
+<div id="pivote-inf-list" class="players-list">
+    <h3>Pivote</h3>
+    <ul>
+        <li>angelica</li>
+        <li>ivan</li>
+    </ul>
+ </div>
+
+</div>
+
+
+<!-- ================= MINI ================= -->
+<div class="container categoria" id="mini" style="display:none;">
+<h2>Mini</h2>
+
+<div class="court">
+<div class="position portero" data-position="portero-mini">Portero</div>
+<div class="position lateral-izq" data-position="lateral-izq-mini">Lateral Izq</div>
+<div class="position lateral-der" data-position="lateral-der-mini">Lateral Der</div>
+<div class="position centro" data-position="centro-mini">Centro</div>
+<div class="position extremo-izq" data-position="extremo-izq-mini">Extremo Izq</div>
+<div class="position extremo-der" data-position="extremo-der-mini">Extremo Der</div>
+<div class="position pivote" data-position="pivote-mini">Pivote</div>
+</div>
+
+<div id="portero-mini-list" class="players-list">
+    <h3>Portero</h3>
+    <ul>
+        <li>tomi</li>
+    </ul>
+</div>
+<div id="lateral-izq-mini-list" class="players-list">
+    <h3>Lateral Izquierdo</h3>
+    <ul>
+        <li>victoria dias</li>
+    </ul>
+</div>
+<div id="lateral-der-mini-list" class="players-list">
+    <h3>Lateral Derecho</h3>
+    <ul>
+        <li>sergio baeza</li>
+    </ul>
+</div>
+<div id="centro-mini-list" class="players-list">
+    <h3>Centro</h3>
+    <ul>
+        <li>josefa poblete</li>
+    </ul>
+</div>
+<div id="extremo-izq-mini-list" class="players-list">
+    <h3>Extremo Izquierdo</h3>
+    <ul>
+        <li>misa</li>
+    </ul>
+</div>
+<div id="extremo-der-mini-list" class="players-list">
+    <h3>Extremo Derecho</h3>
+    <ul>
+        <li>valentina</li>
+    </ul>
+</div>
+<div id="pivote-mini-list" class="players-list">
+    <h3>Pivote</h3>
+    <ul>
+        <li>javier</li>
+    </ul>
+</div>
+</div>
+
+
+<script>
+
+const positions = document.querySelectorAll('.position');
+const lists = document.querySelectorAll('.players-list');
+
+positions.forEach(pos=>{
+pos.addEventListener('click',()=>{
+lists.forEach(list=>list.classList.remove('show'));
+const position = pos.getAttribute('data-position');
+const list = document.getElementById(position+'-list');
+if(list){ list.classList.add('show'); }
+});
+});
+
+const botones = document.querySelectorAll('.categoria-btn');
+const categorias = document.querySelectorAll('.categoria');
+
+botones.forEach(btn=>{
+btn.addEventListener('click',()=>{
+categorias.forEach(cat=>cat.style.display='none');
+document.getElementById(btn.getAttribute('data-cat')).style.display='block';
+});
+});
+
+</script>
+
 </body>
-
 </html>
